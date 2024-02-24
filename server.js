@@ -2,6 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const productRoute = require("./routes/productRoute.js");
+const errorMiddleware = require("./middleware/errorMiddleware.js");
 const app = express();
 
 const MONGODB_URL = process.env.MONGODB_URL;
@@ -19,6 +20,10 @@ app.use("/api/products", productRoute);
 app.get("/", (req, res) => {
   res.send("Welcome crud app");
 });
+
+/// Error Middleware
+
+app.use(errorMiddleware);
 
 /// Connect Port & Database ///
 
